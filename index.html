@@ -24,17 +24,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 img{max-width:100%}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 @media (max-width: 720px){
-  h1{font-size:36px !important}
   h2{font-size:30px !important}
   h3{font-size:26px !important}
   section > div, section[id], section[aria-label]{padding-left:20px !important;padding-right:20px !important}
-  #top img{height:420px !important}
+  header > div{padding:14px 20px !important}
+  header{position:sticky;top:0;z-index:10;background:#FFFFFF}
+  section[id]{scroll-margin-top:72px}
+  #menu-toggle{display:inline-flex !important}
+  .js #site-nav{display:none !important}
+  .js header.open #site-nav{display:flex !important;flex-direction:column;gap:0 !important;width:100%;font-size:18px !important}
+  .js header.open #site-nav a{padding:14px 0;border-top:1px solid #E3E3DF}
+  #top{padding-top:20px !important;padding-bottom:56px !important;gap:28px !important}
+  #top > div:last-child{order:-1}
+  #top img{height:340px !important;object-position:50% 25% !important}
+  h1{font-size:32px !important}
   #about img{height:460px !important}
   #podcasts span[style*="font-size: 34px"]{font-size:26px !important}
   [data-featured] > div, #work article > div{padding:28px !important}
   #work figure{min-height:360px !important}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <main style="font-family: 'Instrument Sans', system-ui, sans-serif; color: #141619; background: #FFFFFF; font-size: 17px; line-height: 1.6">
@@ -42,7 +52,8 @@ img{max-width:100%}
 <header style="border-bottom: 1px solid #E3E3DF">
 <div style="max-width: 1200px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="#top" style="font-weight: 700; font-size: 20px; letter-spacing: 0.02em; color: #141619; text-decoration: none">Alex Shoer</a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-weight: 500">
+<button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" style="display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid #141619; border-radius: 8px; background: #FFFFFF; color: #141619; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="#141619" stroke-width="2" stroke-linecap="round"></path></svg>Menu</button>
+<nav id="site-nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-weight: 500">
 <a href="#about" style="color: #141619; text-decoration: none">About</a>
 <a href="#work" style="color: #141619; text-decoration: none">Track record</a>
 <a href="#ai" style="color: #141619; text-decoration: none">AI &amp; data centers</a>
@@ -291,5 +302,18 @@ img{max-width:100%}
 </section>
 
 </main>
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var toggle = document.getElementById('menu-toggle');
+  function setOpen(open) {
+    header.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () { setOpen(!header.classList.contains('open')); });
+  document.getElementById('site-nav').addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
 </body>
 </html>
