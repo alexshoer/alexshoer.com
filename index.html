@@ -24,17 +24,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 img{max-width:100%}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 @media (max-width: 720px){
-  h1{font-size:36px !important}
   h2{font-size:30px !important}
   h3{font-size:26px !important}
   section > div, section[id], section[aria-label]{padding-left:20px !important;padding-right:20px !important}
-  #top img{height:420px !important}
+  header > div{padding:14px 20px !important}
+  header{position:sticky;top:0;z-index:10;background:#FFFFFF}
+  section[id]{scroll-margin-top:72px}
+  #menu-toggle{display:inline-flex !important}
+  .js #site-nav{display:none !important}
+  .js header.open #site-nav{display:flex !important;flex-direction:column;gap:0 !important;width:100%;font-size:18px !important}
+  .js header.open #site-nav a{padding:14px 0;border-top:1px solid #E3E3DF}
+  #top{padding-top:20px !important;padding-bottom:56px !important;gap:28px !important}
+  #top > div:last-child{order:-1}
+  #top img{height:340px !important;object-position:50% 25% !important}
+  h1{font-size:32px !important}
   #about img{height:460px !important}
-  #podcasts a span[style*="font-size: 34px"]{font-size:26px !important}
-  #podcasts a span[style*="font-size: 30px"]{font-size:24px !important}
-  #podcasts a > div{padding:28px !important}
+  #podcasts span[style*="font-size: 34px"]{font-size:26px !important}
+  [data-featured] > div, #work article > div{padding:28px !important}
+  #work figure{min-height:360px !important}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <main style="font-family: 'Instrument Sans', system-ui, sans-serif; color: #141619; background: #FFFFFF; font-size: 17px; line-height: 1.6">
@@ -42,7 +52,8 @@ img{max-width:100%}
 <header style="border-bottom: 1px solid #E3E3DF">
 <div style="max-width: 1200px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="#top" style="font-weight: 700; font-size: 20px; letter-spacing: 0.02em; color: #141619; text-decoration: none">Alex Shoer</a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-weight: 500">
+<button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" style="display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid #141619; border-radius: 8px; background: #FFFFFF; color: #141619; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="#141619" stroke-width="2" stroke-linecap="round"></path></svg>Menu</button>
+<nav id="site-nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; font-weight: 500">
 <a href="#about" style="color: #141619; text-decoration: none">About</a>
 <a href="#work" style="color: #141619; text-decoration: none">Track record</a>
 <a href="#ai" style="color: #141619; text-decoration: none">AI &amp; data centers</a>
@@ -107,12 +118,22 @@ img{max-width:100%}
 </div>
 <p style="margin: 0; color: #555B61">I’ve done it three times with my own companies, and helped do it inside WeWork, Google X, and Qnetic.</p>
 </div>
-<article style="background: #FFFFFF; border: 1px solid #E3E3DF; border-radius: 12px; padding: 40px; display: flex; flex-direction: column; gap: 18px">
+<article style="background: #FFFFFF; border: 1px solid #E3E3DF; border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))">
+<figure style="margin: 0; position: relative; min-height: 420px">
+<img loading="lazy" src="images/alex-onsite.jpg" alt="Alex Shoer in a hard hat outside the fence of a customer's power generation site" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block">
+<figcaption style="position: absolute; left: 16px; bottom: 16px; padding: 6px 12px; border-radius: 999px; background: rgba(20, 22, 25, 0.75); color: #FFFFFF; font-size: 14px; font-weight: 500">On site at a customer project</figcaption>
+</figure>
+<div style="padding: 40px; display: flex; flex-direction: column; gap: 18px; min-width: 0">
 <p style="margin: 0; font-size: 14px; font-weight: 600; color: #555B61">Co-Founder &amp; Managing Partner</p>
 <img loading="lazy" src="images/gridvest-logo.png" alt="GridVest" style="width: 220px; height: auto; display: block">
-<p style="margin: 0; max-width: 860px">GridVest is a vendor-agnostic battery energy storage procurement and solutions firm. We sit between global cell and system manufacturers and US developers, EPCs, and IPPs, assembling the right technology stack for each project and carrying it from sourcing and financing through commissioning.</p>
-<p style="margin: 0; max-width: 860px">With FEOC rules and tariffs reshaping the supply chain, our job is to keep projects financeable and on schedule. We’ve deployed 50+ MWh to date, and Energy Business Review named GridVest a Top Turnkey Energy Storage Solution for 2026.</p>
-<a href="https://gridvest.com" target="_blank" rel="noopener" style="font-weight: 600">Visit gridvest.com →</a>
+<p style="margin: 0">GridVest is a vendor-agnostic battery energy storage procurement and solutions firm. We sit between global cell and system manufacturers and US developers, EPCs, and IPPs, assembling the right technology stack for each project and carrying it from sourcing and financing through commissioning.</p>
+<p style="margin: 0">With FEOC rules and tariffs reshaping the supply chain, our job is to keep projects financeable and on schedule. We’ve deployed 50+ MWh to date, and Energy Business Review named GridVest a Top Turnkey Energy Storage Solution for 2026.</p>
+<a href="https://www.youtube.com/watch?v=cXy-5w9JWXw" target="_blank" rel="noopener" style="position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #141619"><img loading="lazy" src="https://i.ytimg.com/vi/cXy-5w9JWXw/hqdefault.jpg" alt="Watch the GridVest video on YouTube" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><svg width="68" height="48" viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="12" fill="#141619" fill-opacity="0.85"></rect><path d="M27 15 L45 24 L27 33 Z" fill="#FFFFFF"></path></svg></span></a>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 600">
+<a href="https://www.youtube.com/watch?v=cXy-5w9JWXw" target="_blank" rel="noopener">Watch the GridVest video →</a>
+<a href="https://gridvest.com" target="_blank" rel="noopener">Visit gridvest.com →</a>
+</div>
+</div>
 </article>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; border-top: 1px solid #D6D6D1">
 <div style="padding: 28px 28px 28px 0; border-bottom: 1px solid #D6D6D1; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #555B61">Founder</span><span style="font-size: 22px; font-weight: 600">Seeder Clean Energy</span><span style="font-size: 16px; color: #555B61">VC-backed renewable energy procurement platform for Greater China.</span></div>
@@ -147,7 +168,7 @@ img{max-width:100%}
 </div>
 <a href="#contact" style="font-weight: 600">Have me on your show →</a>
 </div>
-<a href="https://www.cleaningup.live/batteries-are-the-killer-tech-of-the-energy-transition-ep267-alex-shoer/" target="_blank" rel="noopener" style="background: #FFFFFF; border: 1px solid #141619; border-radius: 12px; display: flex; flex-wrap: wrap; text-decoration: none; color: #141619; overflow: hidden">
+<div data-featured style="background: #FFFFFF; border: 1px solid #141619; border-radius: 12px; display: flex; flex-wrap: wrap; overflow: hidden">
 <div style="flex: 3 1 480px; min-width: 0; padding: 40px; display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap">
 <svg width="52" height="52" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="22" fill="#141619"></circle><path d="M18 15 L30 22 L18 29 Z" fill="#FFFFFF"></path></svg>
@@ -156,13 +177,17 @@ img{max-width:100%}
 </div>
 <span style="font-size: 34px; font-weight: 600; line-height: 1.15; letter-spacing: -0.01em">Batteries are the killer tech of the energy transition</span>
 <span style="font-size: 17px; color: #555B61">I joined co-host Bryony Worthington on Michael Liebreich’s Cleaning Up to talk about how China made solar the cheapest electricity on earth, is now doing the same with batteries, and what that means for the US.</span>
-<span style="font-size: 16px; font-weight: 600; color: #2B59C3">Listen to the episode →</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 16px; font-weight: 600">
+<a href="https://www.youtube.com/watch?v=3y9bXPsHGyE" target="_blank" rel="noopener">Watch on YouTube →</a>
+<a href="https://www.cleaningup.live/batteries-are-the-killer-tech-of-the-energy-transition-ep267-alex-shoer/" target="_blank" rel="noopener">Listen on Cleaning Up →</a>
 </div>
-<div style="flex: 2 1 320px; min-width: 0; background: #141619; color: #FFFFFF; padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 16px">
-<span style="font-size: 30px; font-weight: 500; line-height: 1.25">“Batteries are the refrigerator of electricity.”</span>
+</div>
+<div style="flex: 2 1 320px; min-width: 0; background: #141619; color: #FFFFFF; padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 20px">
+<a href="https://www.youtube.com/watch?v=3y9bXPsHGyE" target="_blank" rel="noopener" style="position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #141619"><img loading="lazy" src="https://i.ytimg.com/vi/3y9bXPsHGyE/hqdefault.jpg" alt="Watch the Cleaning Up episode on YouTube" style="width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><svg width="68" height="48" viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="12" fill="#141619" fill-opacity="0.85"></rect><path d="M27 15 L45 24 L27 33 Z" fill="#FFFFFF"></path></svg></span></a>
+<span style="font-size: 26px; font-weight: 500; line-height: 1.25">“Batteries are the refrigerator of electricity.”</span>
 <span style="font-size: 15px; color: #A9AEB3">From the conversation, on why storage changes the economics of power the way refrigeration changed food.</span>
 </div>
-</a>
+</div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
 <a href="https://mosaicofchina.com/season-02-episode-11-alex-shoer" target="_blank" rel="noopener" style="background: #FFFFFF; border: 1px solid #E3E3DF; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #141619">
 <div style="display: flex; align-items: center; gap: 14px">
@@ -249,7 +274,7 @@ img{max-width:100%}
 <a href="https://gridvest.com" target="_blank" rel="noopener" style="color: #FFFFFF">GridVest</a>
 </div>
 </div>
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display: flex; flex-direction: column; gap: 14px">
+<form action="https://formspree.io/f/xwlllzzw" method="POST" style="display: flex; flex-direction: column; gap: 14px">
 <label for="c-name" style="font-size: 14px; font-weight: 600">Name</label>
 <input id="c-name" name="name" type="text" required autocomplete="name" style="min-height: 48px; border-radius: 8px; border: 1px solid #44494F; background: #1E2125; color: #FFFFFF; padding: 0 14px; font: inherit">
 <label for="c-email" style="font-size: 14px; font-weight: 600">Email</label>
@@ -277,5 +302,18 @@ img{max-width:100%}
 </section>
 
 </main>
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var toggle = document.getElementById('menu-toggle');
+  function setOpen(open) {
+    header.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () { setOpen(!header.classList.contains('open')); });
+  document.getElementById('site-nav').addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
 </body>
 </html>
